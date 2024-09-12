@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  iris:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iris_fom_sample
+    restart: always
+    ports:
+       - "53773:52773"
+    environment:
+      - TZ=JST-9
+    volumes:
+      - ./:/data

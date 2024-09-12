@@ -1,0 +1,19 @@
+// システムの設定を変更するため、%SYSネームスペースに移動
+zn "%SYS"
+// 事前定義ユーザのパスワードを無期限に設定（デフォルトパスワードはSYS）
+do ##class(Security.Users).UnExpireUserPasswords("*")
+// 日本語ロケールに変更
+do ##class(Config.NLS.Locales).Install("jpuw")
+
+// FHIRサーバ作成用クラスのインポートと実行（SetupFHIRメソッドの引数は作成するネームスペース名）
+do $system.OBJ.Load("/opt/app/Setup.cls", "ck")
+set sc = ##class(build.Setup).SetupFHIR("fomsample")
+
+// 実装クラスをインポート
+do $system.OBJ.LoadDir("/opt/app/src", "ck",,1)
+// 完成版プロダクションの開始
+do ##class(FOMSAMPLEPKG.FoundationProduction).Start()
+// 自動開始の設定
+do ##class(Ens.Director).SetAutoStart("FOMSAMPLEPKG.FoundationProduction")
+
+halt

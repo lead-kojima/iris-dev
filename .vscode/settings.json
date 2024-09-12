@@ -1,0 +1,21 @@
+{
+    "objectscript.conn": {
+        "active": true,
+        "server": "irisfom",
+        "ns": "FOMSAMPLE",
+        "links": {
+            "$(terminal) WebTerminal": "${serverUrl}/terminal/?ns=${ns}${serverAuth}"
+        }
+    },
+    "intersystems.servers": {
+        "irisfom":{
+            "webServer": {
+                "host": "localhost",
+                "scheme": "http",
+                "port": 53773,
+                "pathPrefix": "/iris"
+            },
+            "username": "SuperUser"
+        }
+    }
+}
