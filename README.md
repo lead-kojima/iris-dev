@@ -11,7 +11,9 @@ FHIRリソースをオブジェクトモデル化したクラス群で、IDE上�
 3. DTLエディタでの利用
 
 ## ビルド＆起動
-`docker-compose up -d --build`
+```terminal
+docker-compose up -d --build
+```
 
 ビルドすることでネームスペースの作成(fomsample)、FHIRエンドポイントの追加、プロダクション関連クラスのインポートと自動開始の設定が行われます。[Patientリソース作成](#patientリソース作成)をターミナルから実行いただくことで、Patientリソースが作成されます。
 
@@ -21,16 +23,16 @@ FHIRリソースをオブジェクトモデル化したクラス群で、IDE上�
 
 ## Patientリソース作成
 ```terminal
-# /var/iris/in.pは、Patient.csvを監視するディレクトリです
 docker exec -d iris_fom_sample cp samples/Patient.csv /var/iris/in.p
 ```
+/var/iris/in.pは、Patient.csvを監視するディレクトリです
 
 ## Observationリソース作成
 ※Patientリソースを作成してから実行してください
 ```terminal
-# /var/iris/in.bmは、BodyMeasurement.csvを監視するディレクトリです
 docker exec -d iris_fom_sample cp samples/BodyMeasurement.csv /var/iris/in.bm
 ```
+/var/iris/in.bmは、BodyMeasurement.csvを監視するディレクトリです
 
 ## FHIRエンドポイント
 - Patient `http://localhost:53773/csp/healthshare/fomsample/fhir/r4/Patient`
